@@ -4,7 +4,6 @@ import path, { resolve } from "node:path";
 
 // https://vite.dev/config/
 export default defineConfig({
-  root: '/src',
   plugins: [react()],
   publicDir: resolve(__dirname, "public"),
   resolve: {
