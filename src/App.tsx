@@ -1,12 +1,16 @@
 // import { useState } from 'react'
 import './App.css'
+import Layout from './components/common/Layout/Layout'
+import Switcher from './components/features/Switcher/Switcher'
 
 function App() {
   // const [count, setCount] = useState(0)
 
   return (
     <>
-      <div>test</div>
+      <Layout>
+        <Switcher />
+      </Layout>
     </>
   )
 }
