@@ -14,15 +14,20 @@ export default function useStorage() {
     }
   });
 
+  const removeTodo = (id: string): void => {
+    const deleteId = value.findIndex((todo: TodoItemType) => todo.id === id)
+    const newTodos = value.toSpliced(deleteId, 1)
+    setValue(newTodos)
+  }
+
   useEffect(() => {
     try {
       localStorage.setItem("react-todos", JSON.stringify(value));
       // localStorage.removeItem("react-todos");
-      console.log("localStorage:",  localStorage.getItem("react-todos"))
     } catch (error) {
       console.error("Error writing localStorage", error);
     }
   }, [value]);
 
-  return [value, setValue] as const;
+  return [value, setValue, removeTodo] as const;
 }

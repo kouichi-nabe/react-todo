@@ -3,8 +3,8 @@ import styles from "./Modal.module.scss"
 import { useContext, useRef, useState } from "react";
 // import useLocalStorage from "@/hooks/useLocalStorage"
 import { v4 as uuid } from "uuid";
-import { NoteContent } from "@/contexts/NoteContent";
-import { TodoItemType } from "@/types/Todo";
+import { TodoContent } from "@/contexts/TodoContext";
+import { TodoItemType, SelectableType } from "@/types/Todo";
 
 interface ModalProps {
 	isOpen: boolean
@@ -14,12 +14,12 @@ interface ModalProps {
 FormModal.setAppElement('#root');
 
 export default function Modal ({ isOpen, closeModal }: ModalProps) {
-  const context = useContext(NoteContent)
+  const context = useContext(TodoContent)
   if (!context) {
     throw new Error("Modal.tsx context error");
   }
   const [todos , setTodos] = context
-  const [selectedType, setSelectedType] = useState<"note" | "memo">("note")
+  const [selectedType, setSelectedType] = useState<SelectableType>("note")
   const textRef = useRef<HTMLTextAreaElement>(null)
 
   const handleSelectedChange = (event: React.ChangeEvent<HTMLInputElement>): void => {

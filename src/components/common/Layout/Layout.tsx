@@ -1,17 +1,17 @@
 import styles from "./Layout.module.css"
-import { NoteContent } from "@/contexts/NoteContent"
+import { TodoContent } from "@/contexts/TodoContext"
 import useLocalStorage from "@/hooks/useLocalStorage"
 
 export default function Layout({ children }: { children?: React.ReactNode }) {
-  const [ todos, setTodos ] = useLocalStorage()
+  const [ todos, setTodos, removeTodo ] = useLocalStorage()
 
   return (
-    <NoteContent.Provider value={[todos, setTodos]} >
+    <TodoContent.Provider value={[todos, setTodos, removeTodo]} >
       <div className={ styles.layout }>
         <div className={ styles.container }>
           { children }
         </div>
       </div>
-    </NoteContent.Provider>
+    </TodoContent.Provider>
   )
 }

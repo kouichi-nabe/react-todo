@@ -1,7 +1,6 @@
 import './App.css'
 import Layout from './components/common/Layout/Layout'
-import Switcher from './components/features/Switcher/Switcher'
-import Todo from './components/features/Todo/Todo'
+import BodyContent from './components/features/BodyContent/BodyContent'
 import TodoForm from './components/features/TodoForm/TodoForm'
 
 function App() {
@@ -9,8 +8,7 @@ function App() {
   return (
     <>
       <Layout>
-        <Switcher />
-        <Todo />
+        <BodyContent />
         <TodoForm />
       </Layout>
     </>
