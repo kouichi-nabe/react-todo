@@ -1,6 +1,8 @@
 import FormModal from "react-modal"
 import styles from "./Modal.module.scss"
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
+import useLocalStorage from "@/hooks/useLocalStorage"
+import { v4 as uuid } from "uuid";
 
 interface ModalProps {
 	isOpen: boolean
@@ -10,6 +12,7 @@ interface ModalProps {
 FormModal.setAppElement('#root');
 
 export default function Modal ({ isOpen, closeModal }: ModalProps) {
+  const [todos, setTodos] = useLocalStorage()
   const [selectedType, setSelectedType] = useState("note")
   const textRef = useRef<HTMLTextAreaElement>(null)
 
@@ -22,12 +25,19 @@ export default function Modal ({ isOpen, closeModal }: ModalProps) {
   }
 
   const handleCreateTodo = () => {
-    console.log(textRef.current?.value, selectedType)
-  }
+    const newTodo = {
+      id: uuid(),
+      text: textRef.current?.value,
+      created: new Date(),
+      type: selectedType
+    }
 
-  useEffect(() => {
-    console.log(selectedType)
-  }, [selectedType])
+    console.log(newTodo)
+    console.log(todos)
+    setTodos([...todos, newTodo])
+
+    closeModal()
+  }
 
   return (
 		<FormModal

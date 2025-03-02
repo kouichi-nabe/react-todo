@@ -8,7 +8,7 @@ type TodoItemProps = {
 
 const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
   const text = todo.text
-  const created = todo.created
+  const created = new Date(todo.created)
   const year = created.getFullYear()
   const month = String(created.getMonth() + 1).padStart(2, "0")
   const day = String(created.getDate()).padStart(2, "0")

@@ -1,14 +1,9 @@
 import styles from "./Layout.module.css"
-import { useEffect } from "react"
 import { NoteContent } from "@/contexts/NoteContent"
-import useSessionStorage from "@/hooks/useSessionStorage"
+import useLocalStorage from "@/hooks/useLocalStorage"
 
 export default function Layout({ children }: { children?: React.ReactNode }) {
-  const [ todos, setTodos ] = useSessionStorage({})
-
-  useEffect(() => {
-    console.log(sessionStorage.getItem("todos"))
-  }, [])
+  const [ todos, setTodos ] = useLocalStorage()
 
   return (
     <NoteContent.Provider value={[todos, setTodos]} >
