@@ -7,7 +7,7 @@ export default function Layout({ children }: { children?: React.ReactNode }) {
   const [ todos, setTodos ] = useSessionStorage({})
 
   useEffect(() => {
-    console.log(localStorage)
+    console.log(sessionStorage.getItem("todos"))
   }, [])
 
   return (

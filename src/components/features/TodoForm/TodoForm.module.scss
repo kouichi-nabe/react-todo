@@ -1,0 +1,25 @@
+.openBtn {
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+  width: 40px;
+  height: 40px;
+  background-color: #7e64ff;
+  border-radius: 50%;
+  cursor: pointer;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: calc(50% - 1px);
+    left: calc(50% - 10px);
+    width: 20px;
+    height: 2px;
+    background-color: #fff;
+  }
+
+  &::after {
+    transform: rotate(90deg);
+  }
+}
