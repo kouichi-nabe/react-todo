@@ -1,25 +1,15 @@
 import styles from "./Todo.module.scss"
 import TodoItem from "./TodoItem/TodoItem"
 import { TodoItemType } from "@/types/Todo"
-import useLocalStorage from "@/hooks/useLocalStorage"
-
-// const Notes: TodoItemType[] = [
-//   {
-//     id: uuid(),
-//     text: "ダミーテキスト Note",
-//     created: new Date(),
-//     type: "note"
-//   },
-//   {
-//     id: uuid(),
-//     text: "ダミーテキスト Memo",
-//     created: new Date(),
-//     type: "memo"
-//   }
-// ]
+import { NoteContent } from "@/contexts/NoteContent";
+import { useContext } from "react";
 
 export default function Todo() {
-  const [todos,] = useLocalStorage()
+  const context = useContext(NoteContent)
+  if (!context) {
+    throw new Error("Modal.tsx context error");
+  }
+  const [todos,] = context
 
   return (
     <div className={ styles.container }>

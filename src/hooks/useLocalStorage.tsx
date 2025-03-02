@@ -15,9 +15,9 @@ export default function useStorage() {
   });
 
   useEffect(() => {
-    // localStorage.removeItem("react-todos");
     try {
       localStorage.setItem("react-todos", JSON.stringify(value));
+      // localStorage.removeItem("react-todos");
       console.log("localStorage:",  localStorage.getItem("react-todos"))
     } catch (error) {
       console.error("Error writing localStorage", error);
