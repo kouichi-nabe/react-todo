@@ -2,6 +2,7 @@
 import './App.css'
 import Layout from './components/common/Layout/Layout'
 import Switcher from './components/features/Switcher/Switcher'
+import Todo from './components/features/Todo/Todo'
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -10,6 +11,7 @@ function App() {
     <>
       <Layout>
         <Switcher />
+        <Todo />
       </Layout>
     </>
   )

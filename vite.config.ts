@@ -5,12 +5,15 @@ import path, { resolve } from "node:path";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+
+  // 追加
   publicDir: resolve(__dirname, "public"),
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  
   // build: {
   //   outDir: resolve(__dirname, "dist"),
   //   emptyOutDir: true,
