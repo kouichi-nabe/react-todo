@@ -13,6 +13,7 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  base: '/react-todo/'
   
   // build: {
   //   outDir: resolve(__dirname, "dist"),
