@@ -14,18 +14,4 @@ export default defineConfig({
     },
   },
   base: '/react-todo/'
-  
-  // build: {
-  //   outDir: resolve(__dirname, "dist"),
-  //   emptyOutDir: true,
-  //   copyPublicDir: true,
-  //   rollupOptions: {
-	// 		input: {
-	// 			"": resolve(__dirname, "src/index.html"),
-	// 		},
-	// 		output: {
-	// 			entryFileNames: "assets/bundle.js",
-	// 		},
-	// 	},
-  // }
 })

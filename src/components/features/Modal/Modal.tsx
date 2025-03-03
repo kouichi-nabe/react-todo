@@ -1,22 +1,22 @@
 import FormModal from "react-modal"
 import styles from "./Modal.module.scss"
-import { useContext, useRef, useState } from "react";
+import { useContext, useRef, useState } from "react"
 // import useLocalStorage from "@/hooks/useLocalStorage"
-import { v4 as uuid } from "uuid";
-import { TodoContent } from "@/contexts/TodoContext";
-import { TodoItemType, SelectableType } from "@/types/Todo";
+import { v4 as uuid } from "uuid"
+import { TodoContent } from "@/contexts/TodoContext"
+import { TodoItemType, SelectableType } from "@/types/Todo"
 
 interface ModalProps {
 	isOpen: boolean
 	closeModal: () => void
 }
 
-FormModal.setAppElement('#root');
+FormModal.setAppElement('#root')
 
 export default function Modal ({ isOpen, closeModal }: ModalProps) {
   const context = useContext(TodoContent)
   if (!context) {
-    throw new Error("Modal.tsx context error");
+    throw new Error("Modal.tsx context error")
   }
   const [todos , setTodos] = context
   const [selectedType, setSelectedType] = useState<SelectableType>("note")
@@ -30,7 +30,7 @@ export default function Modal ({ isOpen, closeModal }: ModalProps) {
   }
 
   const capitalizeFirstLetter = (str: string):string => {
-    return str.charAt(0).toUpperCase() + str.slice(1);
+    return str.charAt(0).toUpperCase() + str.slice(1)
   }
 
   const handleCreateTodo = () => {
@@ -54,7 +54,7 @@ export default function Modal ({ isOpen, closeModal }: ModalProps) {
 			className={ styles.modal }
 			overlayClassName={ styles.overlay }
 		>
-			<button onClick={closeModal} className={ styles.modalClose } type="button"></button>
+			<button data-testid="closeModalBtn" onClick={closeModal} className={ styles.modalClose } type="button"></button>
 			<div className={ styles.modalContent }>
 
         {/* ラジオボタン */}
@@ -65,6 +65,7 @@ export default function Modal ({ isOpen, closeModal }: ModalProps) {
               checked={selectedType === "note"}
               onChange={handleSelectedChange}
               id="note"
+              data-testid="radioNote"
             />
           <label htmlFor="note" className={ selectedType === "note" ? styles.isChecked : "" }>Note</label>
 
@@ -79,10 +80,10 @@ export default function Modal ({ isOpen, closeModal }: ModalProps) {
         </div>
 
         {/* テキストエリア */}
-        <textarea ref={textRef} className={ styles.modalTextArea } rows={6} placeholder={capitalizeFirstLetter(selectedType)} />
+        <textarea ref={textRef} className={ styles.modalTextArea } rows={6} placeholder={capitalizeFirstLetter(selectedType)} data-testid="textarea" />
 
         {/* 作成 */}
-        <button onClick={handleCreateTodo} className={ styles.modalSubmit } type="button">Create task</button>
+        <button data-testid="createTodoBtn" onClick={handleCreateTodo} className={ styles.modalSubmit } type="button">Create task</button>
       </div>
 		</FormModal>
 	)
