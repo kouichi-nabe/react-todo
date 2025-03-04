@@ -67,6 +67,7 @@ export default function ModalContent({ closeModal }: ModalContentProps) {
             checked={selectedType === "memo"}
             onChange={handleSelectedChange}
             id="memo"
+            data-testid="radioMemo"
           />
           <label htmlFor="memo" className={ selectedType === "memo" ? styles.isChecked : "" }>Memo</label>
         </div>

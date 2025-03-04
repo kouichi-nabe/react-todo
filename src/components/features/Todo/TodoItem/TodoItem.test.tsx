@@ -5,6 +5,7 @@ import TodoItem from "./TodoItem"
 // import { describe, expect, test, vi } from "vitest"
 
 describe("TodoItem コンポーネント", () => {
+  const mockSetTodo = vi.fn()
   const mockRemoveTodo = vi.fn()
 
   const mockTodo: TodoItemType = {
@@ -16,7 +17,7 @@ describe("TodoItem コンポーネント", () => {
 
   const renderWithContext = (todo: TodoItemType) => {
     return render(
-      <TodoContent.Provider value={[[], vi.fn(), mockRemoveTodo]}>
+      <TodoContent.Provider value={[[], mockSetTodo, mockRemoveTodo]}>
         <TodoItem todo={todo} />
       </TodoContent.Provider>
     )
