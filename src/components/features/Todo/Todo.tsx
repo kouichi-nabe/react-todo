@@ -2,7 +2,7 @@ import styles from "./Todo.module.scss"
 import TodoItem from "./TodoItem/TodoItem"
 import { TodoItemType } from "@/types/Todo"
 import { TodoContent } from "@/contexts/TodoContext";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { TypeContext } from "@/contexts/TypeContext";
 
 export default function Todo() {

@@ -1,18 +1,23 @@
-import { useState, useEffect } from "react";
-import { TodoItemType } from "@/types/Todo";
+import { useState, useEffect } from "react"
+import { TodoItemType } from "@/types/Todo"
 
 export default function useStorage() {
   const initialValue: TodoItemType[] = []
 
-  const [value, setValue] = useState(() => {
-    try {
-      const item = localStorage.getItem("react-todos");
-      return item ? JSON.parse(item) : initialValue;
-    } catch (error) {
-      console.error("Error reading localStorage", error);
-      return initialValue;
+  const [value, setValue] = useState((todos?: TodoItemType[]) => {
+    if (todos) {
+      localStorage.setItem("react-todos", JSON.stringify(todos))
+    } else {
+      try {
+        const items = localStorage.getItem("react-todos")
+        console.log(items)
+        return items ? JSON.parse(items) : initialValue
+      } catch (error) {
+        console.error("Error reading localStorage", error)
+        return initialValue
+      }
     }
-  });
+  })
 
   const removeTodo = (id: string): void => {
     const deleteId = value.findIndex((todo: TodoItemType) => todo.id === id)
@@ -22,12 +27,12 @@ export default function useStorage() {
 
   useEffect(() => {
     try {
-      localStorage.setItem("react-todos", JSON.stringify(value));
-      // localStorage.removeItem("react-todos");
+      localStorage.setItem("react-todos", JSON.stringify(value))
+      // localStorage.removeItem("react-todos")
     } catch (error) {
-      console.error("Error writing localStorage", error);
+      console.error("Error writing localStorage", error)
     }
-  }, [value]);
+  }, [value])
 
-  return [value, setValue, removeTodo] as const;
+  return [value, setValue, removeTodo] as const
 }
